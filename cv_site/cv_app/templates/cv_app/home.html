@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is it</h1>
+
+    <form method="post" action="{% url 'input_text' %}">
+        {% csrf_token %}
+        <input type="text" name="entered_text">
+        <button type="submit">Submit</button>
+    </form>
+
+
+
+    
+    <h3>Saved Texts:</h3>
+
+<ul>
+    {% for saved_text in saved_texts %}
+    <li>{{ saved_text.text_data }}</li>
+    {% endfor %}
+</ul>
+<h1>Add Company</h1>
+    <form method="post" action="{% url 'add_company' %}">
+        {% csrf_token %}
+        <label for="company_name">Company Name:</label>
+        <input type="text" name="company_name" required>
+        <button type="submit">Add Company</button>
+    </form>
+    <h3>Saved Company:</h3>
+
+    <ul>
+        {% for company in saved_company %}
+        <li>{{ company.name }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'logout' %}">Logout</a>
+
+</body>
+</html>
