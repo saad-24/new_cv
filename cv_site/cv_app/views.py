@@ -61,7 +61,7 @@ def input_text(request):
     
     return render(request, 'cv_app/home.html', {'entered_text': entered_text, 'saved_texts': saved_texts})
 
-
+@login_required
 def add_company(request):
     if request.method == 'POST':
         company_name = request.POST['company_name']
