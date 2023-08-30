@@ -73,4 +73,16 @@ def add_company(request):
     return render(request, 'cv_app/home.html', {'company_name': company_name, 'saved_company': saved_company})
 
 
+@login_required
+def add_skill(request):
+    if request.method == 'POST':
+        skills = request.POST['skill']
+        Skills.objects.create(name=skills, user=request.user)
+    saved_skills = Skills.objects.filter(user=request.user)
+    # print(saved_company)
+
+
+    return render(request, 'cv_app/skills.html', {'skills': skills, 'saved_skills': saved_skills})
+
+
 
