@@ -24,20 +24,7 @@
     <li>{{ saved_text.text_data }}</li>
     {% endfor %}
 </ul>
-<h1>Add Company</h1>
-    <form method="post" action="{% url 'add_company' %}">
-        {% csrf_token %}
-        <label for="company_name">Company Name:</label>
-        <input type="text" name="company_name" required>
-        <button type="submit">Add Company</button>
-    </form>
-    <h3>Saved Company:</h3>
 
-    <ul>
-        {% for company in saved_company %}
-        <li>{{ company.name }}</li>
-        {% endfor %}
-    </ul>
     <a href="{% url 'logout' %}">Logout</a>
 
 </body>

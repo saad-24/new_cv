@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add Education</h1>
+    <form method="post" action="{% url 'add_education' %}">
+        {% csrf_token %}
+        <label for="education">Education:</label>
+        <input type="text" name="education" required>
+        <button type="submit">Add Education</button>
+    </form>
+</body>
+</html>
