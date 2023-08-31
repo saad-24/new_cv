@@ -84,5 +84,28 @@ def add_skill(request):
 
     return render(request, 'cv_app/skills.html', {'skills': skills, 'saved_skills': saved_skills})
 
+@login_required
+def add_certification(request):
+    if request.method == 'POST':
+        certifications = request.POST['certification']
+        Certifications.objects.create(name=certifications, user=request.user)
+    saved_certifications = Certifications.objects.filter(user=request.user)
+    # print(saved_company)
+
+
+    return render(request, 'cv_app/certifications.html', {'certifications': certifications, 'saved_certifications': saved_certifications})
+
+
+@login_required
+def add_education(request):
+    if request.method == 'POST':
+        educations = request.POST['education']
+        Education.objects.create(name=educations, user=request.user)
+    saved_educations = Education.objects.filter(user=request.user)
+    # print(saved_company)
+
+
+    return render(request, 'cv_app/education.html', {'educations': educations, 'saved_educations': saved_educations})
+
 
 
