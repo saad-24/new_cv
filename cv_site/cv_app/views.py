@@ -65,12 +65,16 @@ def input_text(request):
 def add_company(request):
     if request.method == 'POST':
         company_name = request.POST['company_name']
-        Company.objects.create(name=company_name, user=request.user)
+        designation = request.POST['designation']
+        start = request.POST['start']
+        end = request.POST['end']
+        description = request.POST['description']
+        Company.objects.create(name=company_name,designation=designation,start_duration=start,end_duration=end,job_description=description,user=request.user)
     saved_company = Company.objects.filter(user=request.user)
     # print(saved_company)
 
 
-    return render(request, 'cv_app/home.html', {'company_name': company_name, 'saved_company': saved_company})
+    return render(request, 'cv_app/home.html', {'company_name': company_name,'designation':designation,'start':start,'end':end,'description':description,'saved_company': saved_company})
 
 
 @login_required
