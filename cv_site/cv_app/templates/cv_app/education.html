@@ -9,8 +9,14 @@
     <h1>Add Education</h1>
     <form method="post" action="{% url 'add_education' %}">
         {% csrf_token %}
-        <label for="education">Education:</label>
-        <input type="text" name="education" required>
+        <label for="education">Institute:</label>
+        <input type="text" name="institute" required>
+        <label for="education">Degree:</label>
+        <input type="text" name="degree" required>
+        <label for="education">Start:</label>
+        <input type="text" name="start" required>
+        <label for="education">End:</label>
+        <input type="text" name="end" required>
         <button type="submit">Add Education</button>
     </form>
 </body>
