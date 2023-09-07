@@ -88,12 +88,16 @@ def add_skill(request):
 def add_certification(request):
     if request.method == 'POST':
         certifications = request.POST['certification']
-        Certifications.objects.create(name=certifications, user=request.user)
+        certificate_issuer = request.POST['issuer']
+        certificate_issue_date = request.POST['issue_date']
+
+        Certifications.objects.create(name=certifications, issuer=certificate_issuer, issueDate=certificate_issue_date, user=request.user)
+
     saved_certifications = Certifications.objects.filter(user=request.user)
     # print(saved_company)
 
 
-    return render(request, 'cv_app/certifications.html', {'certifications': certifications, 'saved_certifications': saved_certifications})
+    return render(request, 'cv_app/certifications.html', {'certifications': certifications, 'certificate_issuer':certificate_issuer,'certificate_issue_date':certificate_issue_date,'saved_certifications': saved_certifications})
 
 
 @login_required
