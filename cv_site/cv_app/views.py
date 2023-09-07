@@ -103,13 +103,16 @@ def add_certification(request):
 @login_required
 def add_education(request):
     if request.method == 'POST':
-        educations = request.POST['education']
-        Education.objects.create(name=educations, user=request.user)
+        institute = request.POST['institute']
+        degree = request.POST['degree']
+        start = request.POST['start']
+        end = request.POST['end']
+        Education.objects.create(institute=institute,degree=degree, start_duration=start,end_duration=end ,user=request.user)
     saved_educations = Education.objects.filter(user=request.user)
     # print(saved_company)
 
 
-    return render(request, 'cv_app/education.html', {'educations': educations, 'saved_educations': saved_educations})
+    return render(request, 'cv_app/education.html', {'institute': institute,'degree':degree,'start':start,'end':end,'saved_educations': saved_educations})
 
 
 
