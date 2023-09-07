@@ -54,12 +54,16 @@ def logout_view(request):
 def input_text(request):
     if request.method == 'POST':
         entered_text = request.POST['entered_text']
-        # user_data(text_data = entered_text).save()
-        user_data.objects.create(text_data=entered_text, user=request.user)
+        name = request.POST['name']
+        email = request.POST['email']
+        github = request.POST['github']
+        linkedin = request.POST['linkedin']
+
+        user_data.objects.create(text_data=entered_text,name=name,email=email,github=github,linkedin=linkedin,user=request.user)
 
     saved_texts = user_data.objects.filter(user=request.user)
     
-    return render(request, 'cv_app/home.html', {'entered_text': entered_text, 'saved_texts': saved_texts})
+    return render(request, 'cv_app/home.html', {'entered_text': entered_text,'name':name,'email':email,'github':github,'linkedin':linkedin, 'saved_texts': saved_texts})
 
 @login_required
 def add_company(request):
